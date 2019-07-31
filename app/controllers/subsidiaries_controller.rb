@@ -20,6 +20,6 @@ class SubsidiariesController < ApplicationController
   def subsidiary_params
     params.require(:subsidiary)
       .permit(:name, address_attributes: %i[id street number complement
-              neightborhood city state])
+              neighborhood city state])
   end
 end
