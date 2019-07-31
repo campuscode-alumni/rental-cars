@@ -1,0 +1,31 @@
+<% if subsidiary.errors.any? %>
+  <div class="alert alert-danger">
+    <ul>
+      <% subsidiary.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<%= form_for subsidiary do |f| %>
+  <%= f.label :name, 'Nome' %>
+  <%= f.text_field :name %>
+  <h3>Endereço</h3>
+  <%= f.fields_for :address do |address_form| %>
+    <%= address_form.label :street, 'Logradouro' %>
+    <%= address_form.text_field :street %>
+    <%= address_form.label :number, 'Número' %>
+    <%= address_form.text_field :number %>
+    <%= address_form.label :complement, 'Complemento' %>
+    <%= address_form.text_field :complement %>
+    <%= address_form.label :neighborhood, 'Bairro' %>
+    <%= address_form.text_field :neighborhood %>
+    <%= address_form.label :city, 'Cidade' %>
+    <%= address_form.text_field :city %>
+    <%= address_form.label :state, 'Estado' %>
+    <%= address_form.text_field :state %>
+  <% end %>
+
+  <%= f.submit 'Criar filial' %>
+<% end %>

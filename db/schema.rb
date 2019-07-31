@@ -10,7 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_31_160920) do
+ActiveRecord::Schema.define(version: 2019_07_31_194135) do
+
+  create_table "addresses", force: :cascade do |t|
+    t.string "street"
+    t.string "number"
+    t.string "complement"
+    t.string "neighborhood"
+    t.string "city"
+    t.string "state"
+    t.integer "subsidiary_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["subsidiary_id"], name: "index_addresses_on_subsidiary_id"
+  end
 
   create_table "car_models", force: :cascade do |t|
     t.string "name"
@@ -23,6 +36,12 @@ ActiveRecord::Schema.define(version: 2019_07_31_160920) do
   end
 
   create_table "manufactures", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "subsidiaries", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
