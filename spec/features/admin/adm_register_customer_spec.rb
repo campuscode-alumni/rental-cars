@@ -10,6 +10,7 @@ feature 'Admin register customer' do
     fill_in 'Nome', with: 'Josy'
     fill_in 'Email', with: 'josy@exemplo.com'
     fill_in 'CPF', with: '1236478930'
+    fill_in 'Telefone', with: '12345678'
     click_on 'Cadastrar cliente'
 
     expect(page).to have_content('Josy')

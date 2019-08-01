@@ -12,6 +12,11 @@
   <body>
     <%= render 'shared/navbar' %>
     <div class="container mt-3">
+      <% if flash[:success] %>
+       <div class="alert alert-success">
+         <%= flash[:success] %>
+       </div>
+      <% end %>
       <%= yield %>
     </div>
   </body>
