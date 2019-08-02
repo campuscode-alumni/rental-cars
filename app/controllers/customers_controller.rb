@@ -8,6 +8,9 @@ class CustomersController < ApplicationController
     if @customer.save
       redirect_to @customer 
       flash[:success] = "Cliente cadastrado com sucesso"
+    else 
+      flash[:error] = "Você deve preencher todos os campos"  
+      render :new
     end
   end  
 
