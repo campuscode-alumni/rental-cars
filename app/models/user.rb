@@ -4,4 +4,6 @@ class User < ApplicationRecord
   # and :omniauthable
   devise :database_authenticatable,
          :recoverable, :rememberable, :validatable
+
+  has_many :rentals
 end

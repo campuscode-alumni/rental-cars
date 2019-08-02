@@ -28,7 +28,7 @@ feature 'User register rental' do
     visit root_path
     click_on 'Registrar Locação'
 
-    select 'Uno', from: 'Carro'
+    select 'Uno - ABC1234', from: 'Carro'
     fill_in 'Cliente', with: 'Renan'
     click_on 'Enviar'
     
