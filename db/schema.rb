@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_31_194135) do
+ActiveRecord::Schema.define(version: 2019_08_01_235229) do
 
   create_table "addresses", force: :cascade do |t|
     t.string "street"
@@ -57,6 +57,16 @@ ActiveRecord::Schema.define(version: 2019_07_31_194135) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "subsidiary_car_models", force: :cascade do |t|
+    t.decimal "price"
+    t.integer "subsidiary_id"
+    t.integer "car_model_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["car_model_id"], name: "index_subsidiary_car_models_on_car_model_id"
+    t.index ["subsidiary_id"], name: "index_subsidiary_car_models_on_subsidiary_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -65,8 +75,10 @@ ActiveRecord::Schema.define(version: 2019_07_31_194135) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "subsidiary_id"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+    t.index ["subsidiary_id"], name: "index_users_on_subsidiary_id"
   end
 
 end

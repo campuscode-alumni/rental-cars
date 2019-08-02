@@ -5,8 +5,9 @@ feature 'Admin register car price' do
     subsidiary =  create(:subsidiary)
     user = create(:user, subsidiary: subsidiary)
     fiat = create(:manufacture, name: 'Fiat')
-    car_model = CarModel.create(name: 'Opala', year:'1989/1990', 
-                                manufacture: fiat)
+    car_model = CarModel.create!(name: 'Opala', year:'1989/1990', 
+                                manufacture: fiat,
+                                car_options: 'Preto')
     
     login_as user, scope: :user
     visit root_path
