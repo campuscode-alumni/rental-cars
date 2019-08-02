@@ -5,4 +5,5 @@ Rails.application.routes.draw do
   resources :subsidiaries, only: %i[show new create]
   resources :cars, only: %i[show new create]
   resources :customers, only: %i[show new create]
+  resources :maintenances, only: %i[show new create]
 end
