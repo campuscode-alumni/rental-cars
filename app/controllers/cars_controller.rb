@@ -6,6 +6,7 @@ class CarsController < ApplicationController
 
   def create
     @car = Car.new(car_params)
+    @car.subsidiary = current_user.subsidiary
     return redirect_to @car if @car.save
     
     @car_models = CarModel.all

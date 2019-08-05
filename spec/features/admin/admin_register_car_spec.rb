@@ -2,9 +2,10 @@ require 'rails_helper'
 
 feature 'Admin register car' do
   scenario 'successfully' do
-    user = create(:user)
+    subsidiary = create(:subsidiary)
+    user = create(:user, subsidiary: subsidiary)
     fiat = create(:manufacture, name: 'Fiat')
-    create(:car_model, name: 'Sport', manufacture: fiat )
+    create(:car_model, name: 'Sport', manufacture: fiat)
 
     login_as user, scope: :user
     visit root_path
@@ -27,7 +28,8 @@ feature 'Admin register car' do
   end
 
   scenario 'and must fill all fields' do
-    user = create(:user)
+    subsidiary = create(:subsidiary)
+    user = create(:user, subsidiary: subsidiary)
 
     login_as user, scope: :user
     visit root_path

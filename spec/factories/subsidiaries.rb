@@ -1,5 +1,5 @@
 FactoryBot.define do
   factory :subsidiary do
-    name { "MyString" }
+    name { "SJC" }
   end
 end

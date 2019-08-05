@@ -2,7 +2,8 @@ require 'rails_helper'
 
 feature 'Admin register subsidiary' do
   scenario 'successfully' do
-    user = create(:user)
+    subsidiary = create(:subsidiary)
+    user = create(:user, subsidiary: subsidiary)
 
     login_as user, scope: :user
     visit root_path
@@ -25,7 +26,8 @@ feature 'Admin register subsidiary' do
   end
 
   scenario 'and must fill all fields' do
-    user = create(:user)
+    subsidiary = create(:subsidiary)
+    user = create(:user, subsidiary: subsidiary)
 
     login_as user, scope: :user
     visit root_path

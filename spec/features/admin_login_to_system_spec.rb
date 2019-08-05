@@ -2,7 +2,8 @@ require 'rails_helper'
 
 feature 'Admin login to system' do
   scenario 'successfully' do
-    user = create(:user)
+    subsidiary = create(:subsidiary)
+    user = create(:user, subsidiary: subsidiary)
 
     visit root_path
     fill_in 'Email', with: user.email
@@ -14,7 +15,8 @@ feature 'Admin login to system' do
   end
 
   scenario 'and log out' do
-    user = create(:user)
+    subsidiary = create(:subsidiary)
+    user = create(:user, subsidiary: subsidiary)
 
     visit root_path
     fill_in 'Email', with: user.email

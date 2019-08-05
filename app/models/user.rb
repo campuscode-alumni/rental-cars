@@ -6,4 +6,5 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :rentals
+  belongs_to :subsidiary
 end
