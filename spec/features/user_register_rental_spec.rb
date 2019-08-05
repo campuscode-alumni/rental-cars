@@ -29,14 +29,14 @@ feature 'User register rental' do
     click_on 'Registrar Locação'
 
     select 'Uno - ABC1234', from: 'Carro'
-    fill_in 'Cliente', with: 'Renan'
+    select '410812 - Renan', from: 'Cliente'
     click_on 'Enviar'
     
     #expectativas
 
     expect(page).to have_content(car.name)
-    expect(page).to have_content(customer.name)
-    expect(page).to have_content(user.name)
+    expect(page).to have_content("#{customer.cpf} - #{customer.name}")
+    expect(page).to have_content(user.email)
     
   end 
 end

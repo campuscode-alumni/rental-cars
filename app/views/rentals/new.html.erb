@@ -2,7 +2,7 @@
 <%= form_for @rental do |f| %>
   <%= f.label :car_id, 'Carro' %>
   <%= f.collection_select(:car_id, @cars, :id, :name) %>
-  <%= f.label :customer, 'Cliente' %>
-  <%= f.text_field :customer %>
+  <%= f.label :customer_id, 'Cliente' %>
+  <%= f.collection_select(:customer_id, @customers, :id, :cpf_name) %>
   <%= f.submit 'Enviar' %>
 <% end %>
