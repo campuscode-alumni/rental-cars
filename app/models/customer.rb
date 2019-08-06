@@ -5,4 +5,8 @@ class Customer < ApplicationRecord
   def cpf_name
     "#{cpf} - #{name}"
   end
+
+  def rental?
+    rentals.where(rentals: { finished_at: nil }).count > 0
+  end
 end
