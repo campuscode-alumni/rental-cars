@@ -45,6 +45,15 @@ ActiveRecord::Schema.define(version: 2019_08_01_235229) do
     t.index ["car_model_id"], name: "index_cars_on_car_model_id"
   end
 
+  create_table "customers", force: :cascade do |t|
+    t.string "name"
+    t.string "email"
+    t.string "cpf"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "phone"
+  end
+
   create_table "manufactures", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
