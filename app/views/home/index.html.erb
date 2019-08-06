@@ -1,0 +1,3 @@
+<% @cars.each do |car|%>
+  <%= link_to "#{car.car_model.name}-#{car.license_plate}", car %>
+<% end %>

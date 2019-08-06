@@ -1,3 +1,5 @@
+<%= notice %>
+
 <dl class="row">
   <dt class="col-sm-3">Modelo</dt>
   <dd class="col-sm-9"><%= @car.car_model.name %></dd>
@@ -11,3 +13,9 @@
   <dt class="col-sm-3">Placa</dt>
   <dd class="col-sm-9"><%= @car.license_plate %></dd>
 </dl>
+
+<% if @car.on_maintenance? %>
+  <h3>Status: Em manutenção</h3>
+<% else%>
+  <%= link_to "Enviar para manutenção", new_car_maintenance_path(@car) %>
+<% end %>
