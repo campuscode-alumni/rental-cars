@@ -17,6 +17,10 @@ class CarsController < ApplicationController
     @car = Car.find(params[:id])
   end
 
+  def return_car
+
+  end
+
   private
 
   def car_params

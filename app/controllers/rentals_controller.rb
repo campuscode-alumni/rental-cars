@@ -7,6 +7,7 @@ class RentalsController < ApplicationController
 
   def create
     @rental = current_user.rentals.new(rental_params)
+    @rental.start_at = Time.now
     return redirect_to @rental if @rental.save
 
     @cars = current_user.subsidiary.cars

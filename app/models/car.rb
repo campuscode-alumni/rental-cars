@@ -2,7 +2,7 @@ class Car < ApplicationRecord
   belongs_to :car_model
   belongs_to :subsidiary
   has_many :maintenances
-  
+  has_many :rentals
   enum status: { available: 0, on_maintenance: 5 }
 
   validates :car_model, presence: { message: 'Modelo não pode ficar em branco' }
