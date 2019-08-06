@@ -6,7 +6,10 @@ class RentalsController < ApplicationController
   end
 
   def create
+    customer = Customer.find(params[:rental][:customer_id])
+    customer.rentals.where('rentals.finished_at != ?', null)
     @rental = current_user.rentals.new(rental_params)
+
     return redirect_to @rental if @rental.save
 
     @cars = current_user.subsidiary.cars
