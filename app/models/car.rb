@@ -9,7 +9,7 @@ class Car < ApplicationRecord
   validates :license_plate, presence: { message: 'Placa não pode '\
                                                  'ficar em branco' }
 
-  def name
+  def car_identification
     "#{car_model.name} - #{license_plate}"
   end
 end

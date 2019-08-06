@@ -1,7 +1,7 @@
 class RentalsController < ApplicationController
   def new
     @rental = Rental.new
-    @cars = Car.all
+    @cars = current_user.subsidiary.cars
     @customers = Customer.all
   end
 
@@ -9,7 +9,7 @@ class RentalsController < ApplicationController
     @rental = current_user.rentals.new(rental_params)
     return redirect_to @rental if @rental.save
 
-    @cars = Car.all
+    @cars = current_user.subsidiary.cars
     @customers = Customer.all
     render :new
   end
