@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_05_231130) do
+ActiveRecord::Schema.define(version: 2019_08_05_231705) do
 
   create_table "addresses", force: :cascade do |t|
     t.string "street"
@@ -43,6 +43,7 @@ ActiveRecord::Schema.define(version: 2019_08_05_231130) do
     t.string "license_plate"
     t.string "color"
     t.integer "subsidiary_id"
+    t.integer "status", default: 0
     t.index ["car_model_id"], name: "index_cars_on_car_model_id"
     t.index ["subsidiary_id"], name: "index_cars_on_subsidiary_id"
   end
@@ -53,10 +54,27 @@ ActiveRecord::Schema.define(version: 2019_08_05_231130) do
     t.string "cpf"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "phone"
+  end
+
+  create_table "maintenances", force: :cascade do |t|
+    t.integer "car_id"
+    t.integer "provider_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["car_id"], name: "index_maintenances_on_car_id"
+    t.index ["provider_id"], name: "index_maintenances_on_provider_id"
   end
 
   create_table "manufactures", force: :cascade do |t|
     t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "providers", force: :cascade do |t|
+    t.string "name"
+    t.string "cnpj"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -76,6 +94,16 @@ ActiveRecord::Schema.define(version: 2019_08_05_231130) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "subsidiary_car_models", force: :cascade do |t|
+    t.decimal "price"
+    t.integer "subsidiary_id"
+    t.integer "car_model_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["car_model_id"], name: "index_subsidiary_car_models_on_car_model_id"
+    t.index ["subsidiary_id"], name: "index_subsidiary_car_models_on_subsidiary_id"
   end
 
   create_table "users", force: :cascade do |t|

@@ -4,6 +4,6 @@ FactoryBot.define do
     car_km { 200 }
     license_plate { "ABC1234" }
     color { "Azul" }
-    subsidiary { nil }
+    subsidiary
   end
 end
