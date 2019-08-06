@@ -6,9 +6,7 @@ feature 'User register rental' do
     # dados
     subsidiary = create(:subsidiary)
     user = create(:user, subsidiary: subsidiary)
-    manufacture = create(:manufacture)
-    car_model = create(:car_model, manufacture: manufacture)
-    car = create(:car, car_model: car_model, subsidiary: user.subsidiary)
+    car = create(:car, subsidiary: user.subsidiary)
     customer = create(:customer, cpf: "123456789" )
     rental = Rental.create(car: car, user: user, customer: customer)                           
     # acoes
