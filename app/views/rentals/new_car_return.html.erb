@@ -1,0 +1,15 @@
+<% if @car.errors.any? %>
+  <div class="alert alert-danger">
+    <ul>
+      <% @car.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<%= form_for @car, url: return_car_rental_path, method: :post do |f| %>
+  <%= f.label :car_km, 'Quilometragem' %>
+  <%= f.number_field :car_km %>
+  <%= f.submit 'Devolver carro' %>
+<% end %>
