@@ -18,7 +18,7 @@ class Car < ApplicationRecord
   end
 
   def car_km_can_not_be_less_than_actual
-    if car_km <= car_km_was
+    if car_km < car_km_was
       errors.add(:car_km, 'Quilometragem não pode ser menor que a atual')
     end
   end

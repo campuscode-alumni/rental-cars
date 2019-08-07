@@ -6,7 +6,7 @@ feature 'User return car rental' do
     user = create(:user, subsidiary: subsidiary)
     manufacture = create(:manufacture)
     car_model = create(:car_model, name: 'Palio', manufacture: manufacture)
-    car = create(:car, car_model: car_model, license_plate:'xlg1234', subsidiary: subsidiary)
+    car = create(:car, car_model: car_model, license_plate:'xlg1234', subsidiary: subsidiary, car_km: '100')
     customer = create(:customer)
     create(:rental, car: car, customer: customer, user: user)
                                
@@ -18,7 +18,6 @@ feature 'User return car rental' do
     fill_in 'Quilometragem', with: '199'
     click_on 'Devolver carro'
 
-    expect(current_path).to eq car_path(car)
     expect(page).to have_content('Carro devolvido com sucesso')
     expect(page).to have_content('Status available')
     expect(page).to have_content('Quilometragem: 199')

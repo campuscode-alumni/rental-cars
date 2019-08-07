@@ -8,9 +8,9 @@ class Subsidiary < ApplicationRecord
   validates :name, presence: { message: 'Nome não pode ficar em branco' }
 
   def current_price(cm)
-    current_price_car = subsidiary_car_models.find_by(car_model: cm)
+    current_price_car = subsidiary_car_models.where(car_model: cm).last
     if current_price_car
-      return current_price_car.price
+      return current_price_car.price.to_f
     else
       raise 'Esse carro não possui preço'
     end
