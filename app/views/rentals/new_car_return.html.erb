@@ -9,7 +9,9 @@
 <% end %>
 
 <%= form_for @car, url: return_car_rental_path, method: :post do |f| %>
-  <%= f.label :car_km, 'Quilometragem' %>
-  <%= f.number_field :car_km %>
-  <%= f.submit 'Devolver carro' %>
+  <div class="form-group">
+    <%= f.label :car_km, 'Quilometragem' %>
+    <%= f.number_field :car_km, class: 'form-control' %>
+  </div>
+  <%= f.submit 'Devolver carro', class: 'btn btn-primary' %>
 <% end %>
