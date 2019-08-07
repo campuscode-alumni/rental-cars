@@ -1,3 +1,9 @@
+<% if @rental.errors.any? %>
+  <% @rental.errors.full_messages.each do |error|%>
+    <%= error %>
+  <% end %>
+<% end%>
+
 <h1>Nova Locação</h1>
 <%= form_for @rental do |f| %>
   <%= f.label :car_id, 'Carro' %>

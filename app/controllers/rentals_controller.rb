@@ -6,6 +6,7 @@ class RentalsController < ApplicationController
   end
 
   def create
+    customer = Customer.find(params[:rental][:customer_id])
     @rental = current_user.rentals.new(rental_params)
     @rental.start_at = Time.now
     return redirect_to @rental if @rental.save
