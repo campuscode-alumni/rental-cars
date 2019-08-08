@@ -25,4 +25,13 @@ class MaintenancesController < ApplicationController
   def new_return
     @maintenance = Maintenance.find(params[:id])
   end
+  
+  def car_return
+    @maintenance = Maintenance.find(params[:id])
+    @car = @maintenance.car
+
+    if @maintenance.update(params.require(:maintenance).permit(:invoice, :service_cost)) && @car.update_attributes(status: :available)
+      flash[:notice] = 'Carro disponível'
+    end
+  end
 end

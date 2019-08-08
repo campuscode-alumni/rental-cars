@@ -24,8 +24,8 @@ feature 'User return car from maintenance' do
     # expectativas
     expect(page).to have_content('NF0137')
     expect(page).to have_content('2500')
-    expect(page).to have_content('Carro retornou da manutenção')
-    expect(current_path).to eq maintenance_path(maintenance)
+    expect(page).to have_content('Carro disponível')
+    expect(current_path).to eq car_return_maintenance_path(maintenance)
     expect(page).to have_content('Status: Disponível')
     expect(page).not_to have_link('Retornar de manutenção')
   end

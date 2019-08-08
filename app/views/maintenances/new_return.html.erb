@@ -1,4 +1,4 @@
-<%= form_for @maintenance do |f| %>
+<%= form_for @maintenance, url: car_return_maintenance_path, method: :post do |f| %>
   <%= f.label :invoice, 'Nota Fiscal' %>
   <%= f.text_field :invoice %>
   <%= f.label :service_cost, 'Valor' %>

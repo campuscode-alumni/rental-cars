@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   resources :maintenances, only: %i[index] do
     member do
       get 'new_return'
-      post 'maintenance_return'
+      post 'car_return'
     end
   end
 end

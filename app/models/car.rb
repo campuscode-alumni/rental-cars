@@ -15,4 +15,8 @@ class Car < ApplicationRecord
   def car_identification
     "#{car_model.name} - #{license_plate}"
   end
+  
+  def current_maintenance
+    maintenances.last if on_maintenance?
+  end
 end
