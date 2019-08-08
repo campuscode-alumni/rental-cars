@@ -8,7 +8,8 @@ feature 'User return car rental' do
     car_model = create(:car_model, name: 'Palio', manufacture: manufacture)
     car = create(:car, car_model: car_model, license_plate:'xlg1234', subsidiary: subsidiary, car_km: '100')
     customer = create(:customer)
-    create(:rental, car: car, customer: customer, user: user)
+    rental = create(Receipt:rental, car: car, customer: customer, user: user)
+    expect(RentalMailer).to receive(send_return_receipt).with(customer, car, rental)
                                
     login_as user 
     visit root_path
@@ -21,6 +22,7 @@ feature 'User return car rental' do
     expect(page).to have_content('Carro devolvido com sucesso')
     expect(page).to have_content('Status available')
     expect(page).to have_content('Quilometragem: 199')
+   
   end
 
   scenario 'ensure superior km actually' do
