@@ -15,4 +15,14 @@ class MaintenancesController < ApplicationController
     flash[:notice] = 'Carro enviado para manutenção'
     redirect_to @maintenance.car
   end
-end  
+
+  def index
+    @maintenances = Maintenance
+                      .joins(:car)
+                      .where(cars: { status: :on_maintenance })
+  end
+
+  def new_return
+    @maintenance = Maintenance.find(params[:id])
+  end
+end

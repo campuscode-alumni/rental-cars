@@ -1,0 +1,7 @@
+<%= form_for @maintenance do |f| %>
+  <%= f.label :invoice, 'Nota Fiscal' %>
+  <%= f.text_field :invoice %>
+  <%= f.label :service_cost, 'Valor' %>
+  <%= f.text_field :service_cost %>
+  <%= f.submit 'Retornar de manutenção' %>
+<% end %>
