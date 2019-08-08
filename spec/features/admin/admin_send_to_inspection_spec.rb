@@ -15,12 +15,12 @@ feature 'User send car to inspection' do
     visit root_path
     click_on 'Palio-xlg1234'
     click_on 'Enviar para vistoria'
-    fill_in 'Funcionário', with: user.name
     select '1/4', from: 'Nível de combustível'
     select 'Limpo', from: 'Limpeza'
+    fill_in 'Avarias', with: 'Veio pneu furado'
+    click_on 'Vistoriado'
 
-    expect(page).not_to have_link('Enviar para vistoria')
-    expect(page).to have_content("Status: Em vistoria")
-    expect(page).not_to have_link('Enviar para manutenção')
+    expect(page).to have_link('Enviar para vistoria')
+    expect(page).to have_content("Status: Disponível")
   end
 end    

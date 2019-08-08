@@ -16,9 +16,8 @@
 
 <% if @car.on_maintenance? %>
   <h3>Status: Em manutenção</h3>
-<% elsif @car.on_maintenance? %>
-  <h3>Status: Em vistoria</h3>
 <% else%>
-  <%= link_to "Enviar para vistoria", car_inspections_path(@car),  method: :post %>
+  <h3>Status: Disponível</h3>
+  <%= link_to "Enviar para vistoria", new_car_inspection_path(@car)%>
   <%= link_to "Enviar para manutenção", new_car_maintenance_path(@car) %>
 <% end %>

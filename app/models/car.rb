@@ -2,6 +2,7 @@ class Car < ApplicationRecord
   belongs_to :car_model
   belongs_to :subsidiary
   has_many :maintenances
+  has_many :inspections
   
   enum status: { available: 0, on_maintenance: 5 }
 
