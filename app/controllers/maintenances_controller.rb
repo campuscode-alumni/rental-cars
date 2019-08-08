@@ -17,9 +17,7 @@ class MaintenancesController < ApplicationController
   end
 
   def index
-    @maintenances = Maintenance
-                      .joins(:car)
-                      .where(cars: { status: :on_maintenance })
+    @maintenances = Maintenance.cars_on_maintenance
   end
 
   def new_return
@@ -30,8 +28,15 @@ class MaintenancesController < ApplicationController
     @maintenance = Maintenance.find(params[:id])
     @car = @maintenance.car
 
-    if @maintenance.update(params.require(:maintenance).permit(:invoice, :service_cost)) && @car.update_attributes(status: :available)
+    if @maintenance.update(maintenance_return_params) 
+      @car.available!
       flash[:notice] = 'Carro disponível'
     end
+  end
+
+  private
+
+  def maintenance_return_params
+    params.require(:maintenance).permit(:invoice, :service_cost)
   end
 end

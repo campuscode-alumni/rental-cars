@@ -29,4 +29,6 @@ feature 'User return car from maintenance' do
     expect(page).to have_content('Status: Disponível')
     expect(page).not_to have_link('Retornar de manutenção')
   end
+
+  scenario ''
 end
