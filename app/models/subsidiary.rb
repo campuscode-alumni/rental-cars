@@ -10,7 +10,7 @@ class Subsidiary < ApplicationRecord
   def current_price(cm)
     current_price_car = subsidiary_car_models.where(car_model: cm).last
     if current_price_car
-      return current_price_car.price
+      return current_price_car.price.to_f
     else
       raise 'Esse carro não possui preço'
     end

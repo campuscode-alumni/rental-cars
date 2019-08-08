@@ -6,11 +6,11 @@ feature 'Admin send car to manufacture ' do
     provider = Provider.create(name: 'Solucoes.ltda', cnpj: '1234567/777')
     fiat = create(:manufacture, name: 'Fiat')
     palio = create(:car_model, name: 'Palio', manufacture: fiat )
-    car = create(:car, car_model: palio, license_plate: "xlg1234" )
-   
+    car = create(:car, car_model: palio, license_plate: "xlg1234", car_km: 199 )
+  
     login_as user, scope: :user
     visit root_path
-   
+
     click_on 'Palio-xlg1234'
     click_on 'Enviar para manutenção'
     select 'Solucoes.ltda', from: 'Fornecedor parceiro'
