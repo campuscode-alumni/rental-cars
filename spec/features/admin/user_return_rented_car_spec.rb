@@ -8,8 +8,8 @@ feature 'User return car rental' do
     car_model = create(:car_model, name: 'Palio', manufacture: manufacture)
     car = create(:car, car_model: car_model, license_plate:'xlg1234', subsidiary: subsidiary, car_km: '100')
     customer = create(:customer)
-    rental = create(Receipt:rental, car: car, customer: customer, user: user)
-    expect(RentalMailer).to receive(send_return_receipt).with(customer, car, rental)
+    rental = create(:rental, car: car, customer: customer, user: user)
+    expect(RentalMailer).to receive(:send_return_receipt).with(car, rental)
                                
     login_as user 
     visit root_path
