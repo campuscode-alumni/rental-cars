@@ -30,5 +30,23 @@ feature 'User return car from maintenance' do
     expect(page).not_to have_link('Retornar de manutenção')
   end
 
-  scenario ''
+  scenario 'only cars on maintenance' do
+    # dados
+    user = create(:user)
+    provider = Provider.create(name: 'Solucoes.ltda', cnpj: '1234567/777')
+    car_palio = create(:car, license_plate: "XLG1234", status: :on_maintenance)
+    car_uno = create(:car, license_plate: "GLS4567")
+    maintenance = create(:maintenance, car: car_palio, provider: provider)
+    
+    # acoes
+    login_as user
+    visit root_path
+
+    click_on 'Carros em Manutenção'
+
+    # expectativas
+    expect(current_path).to eq maintenances_path
+    expect(page).to have_content(car_palio.car_identification)
+    expect(page).to_not have_content(car_uno.car_identification)    
+  end
 end
