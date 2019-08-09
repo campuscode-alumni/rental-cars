@@ -57,6 +57,18 @@ ActiveRecord::Schema.define(version: 2019_08_08_005643) do
     t.string "phone"
   end
 
+  create_table "inspections", force: :cascade do |t|
+    t.integer "fuel_level"
+    t.integer "cleanance_level"
+    t.text "damages"
+    t.integer "car_id"
+    t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["car_id"], name: "index_inspections_on_car_id"
+    t.index ["user_id"], name: "index_inspections_on_user_id"
+  end
+
   create_table "maintenances", force: :cascade do |t|
     t.integer "car_id"
     t.integer "provider_id"
@@ -87,6 +99,9 @@ ActiveRecord::Schema.define(version: 2019_08_08_005643) do
     t.integer "customer_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.datetime "start_at"
+    t.datetime "finish_at"
+    t.datetime "finished_at"
     t.index ["car_id"], name: "index_rentals_on_car_id"
     t.index ["customer_id"], name: "index_rentals_on_customer_id"
     t.index ["user_id"], name: "index_rentals_on_user_id"

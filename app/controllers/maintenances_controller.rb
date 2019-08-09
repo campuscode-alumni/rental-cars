@@ -12,7 +12,7 @@ class MaintenancesController < ApplicationController
     @maintenance.provider = Provider.find(params[:maintenance][:provider_id])
     @maintenance.car.on_maintenance!
     @maintenance.save
-    flash[:notice] = 'Carro enviado para manutenção'
+    flash[:notice] = I18n.t('maintenance.flash.create')
     redirect_to @maintenance.car
   end
 

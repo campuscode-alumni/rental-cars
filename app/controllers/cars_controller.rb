@@ -14,9 +14,9 @@ class CarsController < ApplicationController
   end
 
   def show
-    @car = Car.find(params[:id])
+    @car = Car.find(params[:id]) 
   end
-
+  
   private
 
   def car_params
