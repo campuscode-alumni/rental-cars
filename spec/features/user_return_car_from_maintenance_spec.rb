@@ -49,4 +49,27 @@ feature 'User return car from maintenance' do
     expect(page).to have_content(car_palio.car_identification)
     expect(page).to_not have_content(car_uno.car_identification)    
   end
+
+  scenario 'validates invoice and service cost on return' do 
+    # dados
+    user = create(:user)
+    provider = Provider.create(name: 'Solucoes.ltda', cnpj: '1234567/777')
+    car = create(:car, license_plate: "XLG1234", status: :on_maintenance)
+    maintenance = create(:maintenance, car: car, provider: provider)
+
+    # acoes
+    login_as user, scope: :user
+    visit root_path
+
+    click_on 'Carros em Manutenção'
+    click_on car.car_identification
+    click_on 'Dar baixa em manutenção'
+    fill_in 'Nota Fiscal', with: ''
+    fill_in 'Valor', with: ''
+    click_on 'Retornar de manutenção'
+
+    # expectativas
+    expect(page).to have_content 'Nota Fiscal não pode ficar em branco'
+    expect(page).to have_content 'Valor não pode ficar em branco'
+  end
 end
