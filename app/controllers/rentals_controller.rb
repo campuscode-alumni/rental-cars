@@ -33,7 +33,7 @@ class RentalsController < ApplicationController
     @car = @rental.car
     if @car.update(car_km: params[:car][:car_km], status: :available) 
       @rental.update(finish_at: Time.now)
-      RentalMailer.send_return_receipt(@rental.id)
+      RentalMailer.send_return_receipt(@rental.id).deliver_now
       flash[:notice] = 'Carro devolvido com sucesso'
       redirect_to @car
     else
