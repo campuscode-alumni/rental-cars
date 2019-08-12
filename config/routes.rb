@@ -14,7 +14,7 @@ Rails.application.routes.draw do
     resources :maintenances, only: %i[show new create edit update]
     resources :inspections, only: %i[ new create]
   end
-  resources :customers, only: %i[show new create]
+  resources :customers
   resources :maintenances, only: %i[index] do
     member do
       get 'new_return'
