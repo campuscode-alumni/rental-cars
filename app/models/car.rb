@@ -2,6 +2,8 @@ class Car < ApplicationRecord
   belongs_to :car_model
   belongs_to :subsidiary
   has_many :maintenances
+  has_many :inspections
+  
   has_many :rentals
 
   enum status: { available: 0, on_maintenance: 5 }
@@ -12,6 +14,10 @@ class Car < ApplicationRecord
 
   def car_identification
     "#{car_model.name} - #{license_plate}"
+  end
+  
+  def current_maintenance
+    maintenances.last if on_maintenance?
   end
 
   def car_km_can_not_be_less_than_actual

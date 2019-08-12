@@ -8,9 +8,11 @@ class RentalsController < ApplicationController
   def create
     customer = Customer.find(params[:rental][:customer_id])
     @rental = current_user.rentals.new(rental_params)
-    @rental.start_at = Time.now
-    return redirect_to @rental if @rental.save
-
+    if @rental.save
+      RentalMailer.send_rental_receipt(@rental.id)
+      flash[:notice] = 'Um email de confirmação foi enviado para o cliente'
+      return redirect_to @rental
+    end   
     @cars = current_user.subsidiary.cars
     @customers = Customer.all
     render :new

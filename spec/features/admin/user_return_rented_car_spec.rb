@@ -14,7 +14,7 @@ feature 'User return car rental' do
     
     login_as user 
     visit root_path
-    click_on 'Palio-xlg1234'
+    click_on 'Palio - xlg1234'
     click_on 'Devolução de carro'
     
     fill_in 'Quilometragem', with: '199'
@@ -35,7 +35,7 @@ feature 'User return car rental' do
 
     login_as user
     visit root_path
-    click_on 'Palio-xlg1234'
+    click_on 'Palio - xlg1234'
     click_on 'Devolução de carro'
 
     fill_in 'Quilometragem', with: '199'

@@ -18,8 +18,11 @@
 </dl>
 
 <% if @car.on_maintenance? %>
-  <h3>Status: Em manutenção</h3>
+  <dd class="col-sm-9">Status: Em manutenção</dd>
+  <%= link_to "Dar baixa em manutenção", new_return_maintenance_path(@car.current_maintenance) %>
 <% else%>
+  <h3>Status: Disponível</h3>
+  <%= link_to "Enviar para vistoria", new_car_inspection_path(@car)%>
   <%= link_to "Enviar para manutenção", new_car_maintenance_path(@car) %>
 <% end %>
 
