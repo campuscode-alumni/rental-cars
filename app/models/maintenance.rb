@@ -14,6 +14,6 @@ class Maintenance < ApplicationRecord
     update(params)
     car.available!
     Debit.create(amount: params[:service_cost],
-    subsidiary: car.subsidiary)
+                 subsidiary: car.subsidiary)
   end
 end
