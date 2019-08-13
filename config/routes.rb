@@ -22,4 +22,5 @@ Rails.application.routes.draw do
     end
   end
  resources :customers, only: %i[show new create]  
+ resources :transactions, only: %i[index]
 end

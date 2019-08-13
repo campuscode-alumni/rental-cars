@@ -11,4 +11,10 @@ class Rental < ApplicationRecord
     end
   end
 
+  def calculate_amount
+    price = car.price
+    rental_days = (finished_at - start_at).to_i / 1.day
+
+    amount = (price * rental_days).to_f
+  end
 end
