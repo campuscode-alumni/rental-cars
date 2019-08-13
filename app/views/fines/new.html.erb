@@ -1,0 +1,11 @@
+<%= form_for [@car, @fine] do |f| %>
+  <%= f.label :issued_on, 'Data de emissão' %>
+  <%= f.text_field :issued_on %>
+  <%= f.label :demerit_points, 'Quantidade de pontos' %>
+  <%= f.text_field :demerit_points %>
+  <%= f.label :fine_value, 'Valor' %>
+  <%= f.text_field :fine_value %>
+  <%= f.label :address, 'Endereço da ocorrência' %>
+  <%= f.text_area :address %>
+  <%= f.submit 'Cadastrar Multa' %>
+<% end %>
