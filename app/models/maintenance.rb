@@ -1,6 +1,7 @@
 class Maintenance < ApplicationRecord
   belongs_to :car
   belongs_to :provider
+  has_one    :debit, as: :transactable
 
   scope :cars_on_maintenance, -> do
     joins(:car).where(cars: { status: :on_maintenance })
@@ -13,7 +14,7 @@ class Maintenance < ApplicationRecord
 
     update(params)
     car.available!
-    Debit.create(amount: params[:service_cost],
+    create_debit(amount: params[:service_cost],
                  subsidiary: car.subsidiary)
   end
 end
