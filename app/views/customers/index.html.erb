@@ -1,3 +1,5 @@
 <% @customers.each do |customer|%>
- <p><%= link_to customer.name, customer %></p>
+  <ul class="list-group">
+    <li class="list-group-item"><%= link_to customer.name, customer %></li>
+  </ul>  
 <% end %>

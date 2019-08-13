@@ -21,6 +21,7 @@ feature 'Admin edit customer' do
     expect(page).to have_content('123456789')
     expect(page).to have_content('234342223')
     expect(page).to have_content('Cliente editado com sucesso')
+    expect(page).to have_link('Voltar')
   end  
 
   scenario 'unsuccessfully' do
