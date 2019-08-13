@@ -12,5 +12,8 @@ class Maintenance < ApplicationRecord
     return false if errors.any?
 
     update(params)
+    car.available!
+    Debit.create(amount: params[:service_cost],
+                 subsidiary: car.subsidiary)
   end
 end
