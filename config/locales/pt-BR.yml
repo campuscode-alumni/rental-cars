@@ -1,6 +1,5 @@
 ---
 pt-BR:
-credit: 'Crédito'
   activerecord:
     errors:
       messages:

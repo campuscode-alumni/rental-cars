@@ -1,4 +1,4 @@
 <% @transactions.each do |transaction| %>
   <p><%= number_to_currency(transaction.amount) %></p>
-  <p><%= t(transaction.type).downcase %></p>
+  <p><%= t(transaction.type.downcase) %></p>
 <% end %>

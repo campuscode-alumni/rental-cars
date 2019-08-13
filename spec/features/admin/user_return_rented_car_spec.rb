@@ -6,6 +6,9 @@ feature 'User return car rental' do
     user = create(:user, subsidiary: subsidiary)
     manufacture = create(:manufacture)
     car_model = create(:car_model, name: 'Palio', manufacture: manufacture)
+    subsidiary_car_model = create(:subsidiary_car_model, price: '200', 
+                                                         car_model: car_model,
+                                                         subsidiary: subsidiary)
     car = create(:car, car_model: car_model, license_plate:'xlg1234', subsidiary: subsidiary, car_km: '100')
     customer = create(:customer, email: 'lucas@gmail.com')
     rental = create(:rental, car: car, customer: customer, user: user)
@@ -27,8 +30,12 @@ feature 'User return car rental' do
   end
 
   scenario 'ensure superior km actually' do
+    subsidiary = create(:subsidiary)
     user = create(:user)
     car_model = create(:car_model, name: 'Palio')
+    subsidiary_car_model = create(:subsidiary_car_model, price: '200', 
+                                                         car_model: car_model,
+                                                         subsidiary: subsidiary)
     car = create(:car, car_model: car_model, license_plate:'xlg1234',
                        subsidiary: user.subsidiary, car_km: 230)
     create(:rental, car: car, user: user)
