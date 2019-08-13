@@ -84,8 +84,7 @@ feature 'User return car from maintenance' do
  
      # acoes
      login_as user, scope: :user
-     visit root_path
-     
+     visit root_path     
      click_on 'Carros em Manutenção'
      click_on 'Palio - xlg1234'
      click_on 'Dar baixa em manutenção'
@@ -97,7 +96,7 @@ feature 'User return car from maintenance' do
      # expectativas
      debit = Debit.last
      expect(debit.amount).to eq 2500
-     expect(debit.subsidiary).to eq user.subsidiary
+     expect(debit.subsidiary).to eq car.subsidiary
 
   end
 end
