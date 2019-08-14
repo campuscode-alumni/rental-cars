@@ -1,8 +1,8 @@
 FactoryBot.define do
   factory :car_model do
-    name { "Uno" }
-    year { "2008" }
+    name { Faker::Vehicle.make }
+    year { Faker::Vehicle.year }
     manufacture
-    car_options { "3 portas" }
+    car_options { Faker::Vehicle.car_options.first }
   end
 end
