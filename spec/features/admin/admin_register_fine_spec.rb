@@ -20,6 +20,8 @@ feature 'Admin register fine' do
     click_on "Cadastrar Multa"
 
     
+    expect(page).to have_content(car_model.name)
+    expect(page).to have_content(car.license_plate)
     expect(page).to have_content("Multa registrada com sucesso")
     expect(page).to have_content("Multa emitida em: 12/03/2019")
     expect(page).to have_content("Quantidade de pontos: 12")
