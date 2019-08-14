@@ -10,7 +10,7 @@ Rails.application.routes.draw do
     end
   end
   resources :subsidiary_car_models, only: %i[show new create]
-  resources :cars, only: %i[show new create] do
+  resources :cars, only: %i[index show new create] do
     resources :maintenances, only: %i[show new create edit update]
     resources :inspections, only: %i[ new create]
   end

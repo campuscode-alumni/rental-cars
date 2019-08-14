@@ -1,3 +1,5 @@
-<% @cars.each do |car|%>
-  <%= link_to "#{car.car_model.name} - #{car.license_plate}", car %>
-<% end %>
+   <ol>
+   <%= render @cars %>
+   </ol>
+   <%= link_to 'Ver todos', cars_path %>
+
