@@ -30,8 +30,8 @@
 
 <% @car.rentals.each do |rental| %>
   <%= rental.start_at %>
-  <% if rental.finish_at? %>
-    <%= rental.finish_at %>
+  <% if rental.finished_at? %>
+    <%= rental.finished_at %>
   <% else %>
     <%= link_to "Devolução de carro", new_car_return_rental_path(rental) %>
   <% end %>

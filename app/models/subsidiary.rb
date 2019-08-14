@@ -4,6 +4,7 @@ class Subsidiary < ApplicationRecord
   has_many :cars
   has_many :subsidiary_car_models
   has_many :credits
+  has_many :transactions
   accepts_nested_attributes_for :address
 
   validates :name, presence: { message: 'Nome não pode ficar em branco' }

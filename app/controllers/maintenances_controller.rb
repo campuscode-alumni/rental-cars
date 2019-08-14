@@ -29,7 +29,6 @@ class MaintenancesController < ApplicationController
     @car = @maintenance.car
     
     if @maintenance.car_return(maintenance_return_params)
-      @car.available!
       flash[:notice] = 'Carro disponível'
     else
       render :new_return
