@@ -13,17 +13,43 @@ feature 'Admin register fine' do
     visit root_path
     click_on "Palio - ABC1234"
     click_on "Registrar Multa"
-    fill_in "Data de emissão", with: "12/03/19"
+    fill_in "Data de emissão", with: "12/03/2019"
     fill_in "Quantidade de pontos", with: 12
     fill_in "Valor", with: 100.00
     fill_in "Endereço da ocorrência", with: "Rua Banana, 02"
     click_on "Cadastrar Multa"
+
     
     expect(page).to have_content("Multa registrada com sucesso")
-    expect(page).to have_content("Multa emitida em: 12/03/19")
+    expect(page).to have_content("Multa emitida em: 12/03/2019")
     expect(page).to have_content("Quantidade de pontos: 12")
-    expect(page).to have_content("Valor: R$ 100.00")
+    expect(page).to have_content("Valor: R$ 100,00")
     expect(page).to have_content("Endereço da ocorrência: Rua Banana, 02")
-    
+    credit = Credit.last
+    expect(credit.amount).to eq 100
+    expect(credit.subsidiary).to eq user.subsidiary
+    expect(credit.transactable).to eq Fine.last
+
   end
+
+  scenario 'must be valid' do
+   
+    subsidiary = create(:subsidiary)
+    user = create(:user)
+    car_model = create(:car_model, name: 'Palio')
+    car = create(:car, car_model: car_model, license_plate: "ABC1234", subsidiary: user.subsidiary)
+    customer = create(:customer, name: "Renan")
+
+    login_as user, scope: :user
+    visit root_path
+    click_on "Palio - ABC1234"
+    click_on "Registrar Multa"
+    fill_in "Data de emissão", with: ""
+    fill_in "Quantidade de pontos", with: ''
+    fill_in "Valor", with: ''
+    fill_in "Endereço da ocorrência", with:  ''
+    click_on "Cadastrar Multa"
+    
+    expect(page).to have_content("Não foi posível cadastrar multa")
+  end   
 end      

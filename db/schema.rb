@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_13_003633) do
+ActiveRecord::Schema.define(version: 2019_08_14_001730) do
 
   create_table "addresses", force: :cascade do |t|
     t.string "street"
@@ -139,6 +139,11 @@ ActiveRecord::Schema.define(version: 2019_08_13_003633) do
     t.string "type"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "subsidiary_id"
+    t.string "transactable_type"
+    t.integer "transactable_id"
+    t.index ["subsidiary_id"], name: "index_transactions_on_subsidiary_id"
+    t.index ["transactable_type", "transactable_id"], name: "index_transactions_on_transactable_type_and_transactable_id"
   end
 
   create_table "users", force: :cascade do |t|
