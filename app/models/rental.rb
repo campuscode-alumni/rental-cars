@@ -2,6 +2,7 @@ class Rental < ApplicationRecord
   belongs_to :car
   belongs_to :user
   belongs_to :customer
+  has_one :credit, as: :transactable
 
   validate :customer_cannot_rental_twice
 
@@ -22,7 +23,7 @@ class Rental < ApplicationRecord
   def finalize!
     update(finished_at: Time.zone.now)
 
-    Credit.create(amount: calculate_amount, 
-                  subsidiary: car.subsidiary)
+    create_credit(amount: calculate_amount, 
+                 subsidiary: car.subsidiary)
   end
 end
