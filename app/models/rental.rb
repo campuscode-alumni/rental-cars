@@ -16,5 +16,13 @@ class Rental < ApplicationRecord
     rental_days = (finished_at - start_at).to_i / 1.day
 
     amount = (price * rental_days).to_f
+    amount == 0 ? price : amount
+  end
+
+  def finalize!
+    update(finished_at: Time.zone.now)
+
+    Credit.create(amount: calculate_amount, 
+                  subsidiary: car.subsidiary)
   end
 end
