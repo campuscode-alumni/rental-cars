@@ -10,6 +10,7 @@
 
 <%= form_for @car, url: return_car_rental_path, method: :post do |f| %>
   <div class="form-group">
+    <h3>Total: <%= number_to_currency(@calculated_amount) %></h3>
     <%= f.label :car_km, 'Quilometragem' %>
     <%= f.number_field :car_km, class: 'form-control' %>
   </div>

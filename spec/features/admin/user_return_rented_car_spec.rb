@@ -31,9 +31,9 @@ feature 'User return car rental' do
 
   scenario 'ensure superior km actually' do
     subsidiary = create(:subsidiary)
-    user = create(:user)
+    user = create(:user, subsidiary: subsidiary)
     car_model = create(:car_model, name: 'Palio')
-    subsidiary_car_model = create(:subsidiary_car_model, price: '200', 
+    subsidiary_car_model = create(:subsidiary_car_model, price: 200.0, 
                                                          car_model: car_model,
                                                          subsidiary: subsidiary)
     car = create(:car, car_model: car_model, license_plate:'xlg1234',
@@ -45,7 +45,7 @@ feature 'User return car rental' do
     click_on 'Palio - xlg1234'
     click_on 'Devolução de carro'
 
-    fill_in 'Quilometragem', with: '199'
+    fill_in 'Quilometragem', with: '136'
     click_on 'Devolver carro'
 
     expect(page).to have_content('Quilometragem não pode ser menor que a atual')

@@ -27,6 +27,12 @@ class Car < ApplicationRecord
   end
 
   def price
-    car_model.subsidiary_car_models.find_by(subsidiary: subsidiary).price.to_f
+    car_price = car_model.subsidiary_car_models.find_by(subsidiary: subsidiary)
+    if car_price
+      car_price.price.to_f
+    else 
+      raise 'Carro não possui preço cadastrado'
+    end
+    
   end
 end
