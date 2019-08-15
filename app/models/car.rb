@@ -26,4 +26,14 @@ class Car < ApplicationRecord
       errors.add(:car_km, 'Quilometragem não pode ser menor que a atual')
     end
   end
+
+  def price
+    car_price = car_model.subsidiary_car_models.find_by(subsidiary: subsidiary)
+    if car_price
+      car_price.price.to_f
+    else 
+      raise 'Carro não possui preço cadastrado'
+    end
+    
+  end
 end

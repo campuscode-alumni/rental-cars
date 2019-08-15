@@ -6,8 +6,11 @@ RSpec.describe Rental, type: :model do
       it 'Should create successfully' do 
         subsidiary = build(:subsidiary)
         user = build(:user, subsidiary: subsidiary)
-        car = build(:car, subsidiary: user.subsidiary)
-        customer = build(:customer, cpf: "123456789" )
+        car_model = create(:car_model)
+        subsidiary_car_model = create(:subsidiary_car_model, car_model: car_model,
+                                                             subsidiary: subsidiary)
+        car = build(:car, car_model: car_model, subsidiary: subsidiary)
+        customer = build(:customer, cpf: "123456789")
         Rental.create(car: car, user: user, customer: customer, finished_at: Date.today) 
         rental = Rental.new(car: car, user: user, customer: customer) 
 
@@ -25,5 +28,55 @@ RSpec.describe Rental, type: :model do
       expect(rental).to be_invalid
       end  
     end  
-  end  
+  end
+  
+  describe '#calculate_amount' do
+    it 'successfully' do
+      subsidiary = create(:subsidiary)
+      user = create(:user, subsidiary: subsidiary)
+      manufacture = create(:manufacture)
+      car_model = create(:car_model, name: 'Palio', manufacture: manufacture)
+      subsidiary_car_model = create(:subsidiary_car_model, price: '200', 
+                                                          car_model: car_model, 
+                                                          subsidiary: subsidiary)
+      car = create(:car, car_model: car_model, license_plate:'xlg1234', subsidiary: subsidiary, car_km: '100')
+      customer = create(:customer, email: 'lucas@gmail.com')
+      rental = create(:rental, car: car, customer: customer, user: user, start_at: 2.days.ago)
+      rental.finalize!(car_km: 250)
+
+      expect(rental.calculate_amount).to eq 400.0
+    end
+    
+    it 'one day' do
+      subsidiary = create(:subsidiary)
+      user = create(:user, subsidiary: subsidiary)
+      manufacture = create(:manufacture)
+      car_model = create(:car_model, name: 'Palio', manufacture: manufacture)
+      subsidiary_car_model = create(:subsidiary_car_model, price: '200', 
+                                                          car_model: car_model, 
+                                                          subsidiary: subsidiary)
+      car = create(:car, car_model: car_model, license_plate:'xlg1234', subsidiary: subsidiary, car_km: '100')
+      customer = create(:customer, email: 'lucas@gmail.com')
+      rental = create(:rental, car: car, customer: customer, user: user, start_at: 1.days.ago)
+      rental.finalize!(car_km: 250)
+
+      expect(rental.calculate_amount).to eq 200.0
+    end
+
+    it 'same day' do
+      subsidiary = create(:subsidiary)
+      user = create(:user, subsidiary: subsidiary)
+      manufacture = create(:manufacture)
+      car_model = create(:car_model, name: 'Palio', manufacture: manufacture)
+      subsidiary_car_model = create(:subsidiary_car_model, price: '200', 
+                                                          car_model: car_model, 
+                                                          subsidiary: subsidiary)
+      car = create(:car, car_model: car_model, license_plate:'xlg1234', subsidiary: subsidiary, car_km: '100')
+      customer = create(:customer, email: 'lucas@gmail.com')
+      rental = create(:rental, car: car, customer: customer, user: user, start_at: Time.zone.now)
+      rental.finalize!(car_km: 250)
+
+      expect(rental.calculate_amount).to eq 200.0
+    end
+  end
 end

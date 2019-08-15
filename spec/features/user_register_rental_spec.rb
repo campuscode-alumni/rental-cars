@@ -50,4 +50,25 @@ feature 'User register rental' do
     expect(page).to have_content(car_paulista.car_identification)
 
   end
+
+  scenario 'when car has not price registered' do 
+    #dados
+    subsidiary = create(:subsidiary)
+    user = create(:user, subsidiary: subsidiary)
+    manufacture = create(:manufacture)
+    car_model = create(:car_model, name: 'Palio', manufacture: manufacture)
+    car = create(:car, car_model: car_model, license_plate: 'ABC-1234', color: 'Azul', subsidiary: subsidiary)
+    customer = create(:customer)
+    
+    # acoes
+    login_as user
+    visit root_path
+    click_on 'Registrar Locação'
+
+    select "#{car.car_identification}", from: 'Carro'
+    select "#{customer.cpf_name}", from: 'Cliente'
+    click_on 'Enviar'
+
+    expect(page).to have_content("Esta locação não pode ser cadastrada, pois o carro não possui preço")
+  end
 end

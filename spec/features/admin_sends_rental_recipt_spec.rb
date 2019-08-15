@@ -3,10 +3,13 @@ require 'rails_helper'
 feature 'Admin sends rental recipt through email' do
   
   scenario 'successfully' do
-    
-    user = create(:user)
-    car = create(:car, subsidiary: user.subsidiary)
-    customer = create(:customer, cpf: "123456789" )  
+    subsidiary = create(:subsidiary)
+    user = create(:user, subsidiary: subsidiary)
+    car_model = create(:car_model, name: 'Palio')
+    subsidiary_car_model = create(:subsidiary_car_model, car_model: car_model,
+                                                         subsidiary: subsidiary)
+    car = create(:car, car_model: car_model, subsidiary: user.subsidiary)
+    customer = create(:customer, cpf: "123456789")
     sent_mail = class_spy(RentalMailer)
     stub_const("RentalMailer", sent_mail)
     login_as user

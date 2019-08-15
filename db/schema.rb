@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_14_001730) do
+ActiveRecord::Schema.define(version: 2019_08_14_000915) do
 
   create_table "addresses", force: :cascade do |t|
     t.string "street"
@@ -42,8 +42,8 @@ ActiveRecord::Schema.define(version: 2019_08_14_001730) do
     t.datetime "updated_at", null: false
     t.string "license_plate"
     t.string "color"
-    t.integer "subsidiary_id"
     t.integer "status", default: 0
+    t.integer "subsidiary_id"
     t.index ["car_model_id"], name: "index_cars_on_car_model_id"
     t.index ["subsidiary_id"], name: "index_cars_on_subsidiary_id"
   end
@@ -111,7 +111,6 @@ ActiveRecord::Schema.define(version: 2019_08_14_001730) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.datetime "start_at"
-    t.datetime "finish_at"
     t.datetime "finished_at"
     t.index ["car_id"], name: "index_rentals_on_car_id"
     t.index ["customer_id"], name: "index_rentals_on_customer_id"

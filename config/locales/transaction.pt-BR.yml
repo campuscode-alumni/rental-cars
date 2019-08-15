@@ -3,8 +3,10 @@ pt-BR:
   activerecord:
     models:
       transaction: 'Transação'
+      credit: 'Crédito'
     attributes:
       transaction:
         amount: 'valor'
         subisidiary_id: 'Filial'
         subisidiary: 'Filial'
+  credit: 'Crédito'

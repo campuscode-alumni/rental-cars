@@ -6,7 +6,7 @@ class Customer < ApplicationRecord
     "#{cpf} - #{name}"
   end
 
-  def rental?
-    rentals.where(rentals: { finished_at: nil }).count > 0
+  def opened_rentals_count
+    rentals.where(rentals: { finished_at: nil }).count
   end
 end
