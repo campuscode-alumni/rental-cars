@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-feature 'List cars in home' do
+feature 'List available cars in home' do
 
   scenario 'successfully' do
     
@@ -8,8 +8,8 @@ feature 'List cars in home' do
     user = create(:user)
     login_as(user)
 
-    create_list(:car, 10, car_model: create(:car_model, name: 'Palio'))
-    create_list(:car, 5, car_model: create(:car_model, name: 'X1'))
+    create_list(:car, 10, status: :available, car_model: create(:car_model, name: 'Palio'))
+    create_list(:car, 5, status: :available, car_model: create(:car_model, name: 'X1'))
     
     #act
     visit root_path

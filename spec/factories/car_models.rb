@@ -3,6 +3,6 @@ FactoryBot.define do
     name { Faker::Vehicle.make }
     year { Faker::Vehicle.year }
     manufacture
-    car_options { Faker::Vehicle.car_options.first }
+    car_options { Faker::Color.color_name }
   end
 end

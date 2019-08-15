@@ -1,6 +1,6 @@
 class HomeController < ApplicationController
   def index
-    @cars = Car.where(status: :available).order(:updated_at).last(10)
+    @cars = Car.last_available_cars
     @all_cars = Car.all - @cars
   end
 end
