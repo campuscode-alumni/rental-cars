@@ -1,8 +1,19 @@
 <h2>Últimos carros disponíveis</h2>
   <div class="row last-available-cars">
-   <%= render @cars %>
+   <%= render @available_cars %>
   </div>
   <%= link_to 'Ver todos disponíveis', cars_path, class: "btn btn-info float-right" %>
 <h2>Todos os carros</h2>
 <%= render @all_cars %>
 
+<div id="maintenance">
+  <h1>Carros em manutenção</h1>
+  <% @cars_on_maintenance.each do |car|%>
+  <div class="row">
+    <div class="col-sm">
+      <%= render car %>
+    </div>
+  </div>
+  <% end %>
+  <%= link_to "Ver todos os carros em manutenção", maintenances_path %>
+</div>

@@ -33,7 +33,7 @@ feature 'List available cars in home' do
     create_list(:car, 5, car_model: create(:car_model, name: 'X1'))
     
     visit root_path
-    click_on "Ver todos"
+    click_on "Ver todos disponíveis"
 
     expect(current_path).to eq cars_path
     expect(page).to have_content('X1', count: 5)
