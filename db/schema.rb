@@ -57,6 +57,17 @@ ActiveRecord::Schema.define(version: 2019_08_14_000915) do
     t.string "phone"
   end
 
+  create_table "fines", force: :cascade do |t|
+    t.date "issued_on"
+    t.integer "demerit_points"
+    t.float "fine_value"
+    t.string "address"
+    t.integer "car_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["car_id"], name: "index_fines_on_car_id"
+  end
+
   create_table "inspections", force: :cascade do |t|
     t.integer "fuel_level"
     t.integer "cleanance_level"

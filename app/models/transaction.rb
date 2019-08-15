@@ -1,4 +1,4 @@
 class Transaction < ApplicationRecord
-  belongs_to :subsidiary
   belongs_to :transactable, polymorphic: true
+  belongs_to :subsidiary
 end
