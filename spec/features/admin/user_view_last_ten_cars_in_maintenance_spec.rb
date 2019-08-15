@@ -19,4 +19,22 @@ feature 'successfully' do
       expect(page).not_to have_content(cars.last.license_plate)
     end
   end
+
+  scenario 'user all cars on maintenance' do 
+
+    user = create(:user)
+    cars = create_list(:car, 11, :on_maintenance)
+
+    login_as user
+    visit root_path
+    
+    within 'div#maintenance' do
+      cars.first(10).each do |car|
+        expect(page).to have_content(car.car_model.name)
+        expect(page).to have_content(car.license_plate)
+      end  
+      click_on "Ver todos os carros em manutenção"
+      expect(current_path).to eq maintenances_path
+    end
+  end    
 end
