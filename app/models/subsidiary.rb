@@ -3,6 +3,7 @@ class Subsidiary < ApplicationRecord
   has_one :address
   has_many :cars
   has_many :subsidiary_car_models
+  has_many :credits
   has_many :transactions
   accepts_nested_attributes_for :address
 

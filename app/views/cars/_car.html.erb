@@ -1,1 +1,7 @@
- <li><%= link_to "#{car.car_model.name} - #{car.license_plate}", car %><li>
+<div class="col-md-2 mb-3 mt-3" >
+  <div class="card p-3">
+    <strong><dt>Modelo do Veículo</dt></strong>
+    <dd><%= link_to car.car_identification, car %></dd>
+    <%= link_to "Ver detalhes", car %>
+  </div>
+</div>

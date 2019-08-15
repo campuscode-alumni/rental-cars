@@ -1,5 +1,8 @@
-   <ol>
+<h2>Últimos carros disponíveis</h2>
+  <div class="row last-available-cars">
    <%= render @cars %>
-   </ol>
-   <%= link_to 'Ver todos', cars_path %>
+  </div>
+  <%= link_to 'Ver todos disponíveis', cars_path, class: "btn btn-info float-right" %>
+<h2>Todos os carros</h2>
+<%= render @all_cars %>
 

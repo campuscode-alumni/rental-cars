@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_12_234623) do
+ActiveRecord::Schema.define(version: 2019_08_14_001730) do
 
   create_table "addresses", force: :cascade do |t|
     t.string "street"
@@ -55,6 +55,17 @@ ActiveRecord::Schema.define(version: 2019_08_12_234623) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "phone"
+  end
+
+  create_table "fines", force: :cascade do |t|
+    t.date "issued_on"
+    t.integer "demerit_points"
+    t.float "fine_value"
+    t.string "address"
+    t.integer "car_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["car_id"], name: "index_fines_on_car_id"
   end
 
   create_table "inspections", force: :cascade do |t|
@@ -128,7 +139,10 @@ ActiveRecord::Schema.define(version: 2019_08_12_234623) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "subsidiary_id"
+    t.string "transactable_type"
+    t.integer "transactable_id"
     t.index ["subsidiary_id"], name: "index_transactions_on_subsidiary_id"
+    t.index ["transactable_type", "transactable_id"], name: "index_transactions_on_transactable_type_and_transactable_id"
   end
 
   create_table "users", force: :cascade do |t|

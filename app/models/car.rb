@@ -3,6 +3,7 @@ class Car < ApplicationRecord
   belongs_to :subsidiary
   has_many :maintenances
   has_many :inspections
+  has_many :fines
   
   has_many :rentals
 

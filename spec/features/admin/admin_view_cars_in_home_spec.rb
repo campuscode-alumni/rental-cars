@@ -4,17 +4,23 @@ feature 'List cars in home' do
 
   scenario 'successfully' do
     
+    #arrange
     user = create(:user)
     login_as(user)
 
     create_list(:car, 10, car_model: create(:car_model, name: 'Palio'))
     create_list(:car, 5, car_model: create(:car_model, name: 'X1'))
     
+    #act
     visit root_path
 
-    expect(page).to have_content('X1', count: 5)
-    expect(page).to have_content('Palio', count: 5)
-    expect(page).not_to have_content('Palio', count: 10)
+    #assert
+    within("div.last-available-cars") do
+      expect(page).to have_content('X1', count: 5)
+      expect(page).to have_content('Palio', count: 5)
+      expect(page).not_to have_content('Palio', count: 10)
+    end
+    
     
   end
 
