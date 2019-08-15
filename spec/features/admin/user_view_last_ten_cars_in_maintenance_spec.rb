@@ -27,14 +27,12 @@ feature 'successfully' do
 
     login_as user
     visit root_path
-    
-    within 'div#maintenance' do
-      cars.first(10).each do |car|
-        expect(page).to have_content(car.car_model.name)
-        expect(page).to have_content(car.license_plate)
-      end  
+
       click_on "Ver todos os carros em manutenção"
       expect(current_path).to eq maintenances_path
-    end
+      cars.each do |car|
+        expect(page).to have_content(car.car_model.name)
+        expect(page).to have_content(car.license_plate)
+      end
   end    
 end
