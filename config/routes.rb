@@ -23,4 +23,12 @@ Rails.application.routes.draw do
     end
   end
  resources :customers, only: %i[show new create]  
+ 
+ namespace :api do
+  namespace :v1 do
+    resources :subsidiaries, only: %i[show]  do
+      resources :cars, only: %i[index] 
+    end
+  end  
+ end 
 end
