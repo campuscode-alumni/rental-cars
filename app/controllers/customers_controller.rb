@@ -1,5 +1,6 @@
 class CustomersController < ApplicationController
-  
+  before_action :set_params, only: [:show, :edit, :update]
+
   def index
     @customers = Customer.all
   end 
@@ -19,16 +20,11 @@ class CustomersController < ApplicationController
     end
   end  
 
-  def show
-    @customer = Customer.find(params[:id])
-  end  
+  def show; end  
 
-  def edit
-    @customer = Customer.find(params[:id])
-  end  
+  def edit; end  
 
   def update
-    @customer = Customer.find(params[:id])
     if @customer.update(customer_params)
       redirect_to @customer
       flash[:success] = 'Cliente editado com sucesso'
@@ -42,5 +38,9 @@ class CustomersController < ApplicationController
 
   def customer_params
     params.require(:customer).permit(:name, :email, :cpf, :phone)
+  end  
+
+  def set_params
+    @customer = Customer.find(params[:id])
   end  
 end  
