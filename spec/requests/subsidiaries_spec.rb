@@ -15,10 +15,8 @@ RSpec.describe 'Subsidiaries API', type: :request do
       
       expect(response.status).to eq 200
       expect(parsed_body.size).to eq 4
-      expect(response.body.match("Joao")).to eq 2
-      
-      # expect(parsed_body.select{}).to have_content('Joao', count: 2)
-      # expect(parsed_body).to have_content('Mateus', count: 2)
+      expect(response.body.scan(/(?=Joao)/).count).to eq 2
+      expect(response.body.scan(/(?=Mateus)/).count).to eq 2
     end
   end
 end
