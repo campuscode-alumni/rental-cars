@@ -21,5 +21,11 @@ Rails.application.routes.draw do
       post 'car_return'
     end
   end
- resources :customers, only: %i[show new create]  
+ resources :customers, only: %i[show new create]
+
+  namespace :api do
+    namespace :v1 do
+      get 'subsidiaries/list', to: 'subsidiaries#list'
+    end
+  end
 end
