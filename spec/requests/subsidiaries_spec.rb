@@ -2,14 +2,14 @@ require 'rails_helper'
 
 RSpec.describe 'Subsidiaries API', type: :request do 
 
-  context 'get /subsidiaries/all' do
+  context 'get /subsidiaries' do
     
     it 'should list all subsidiaries' do
 
       create_list(:subsidiary, 2, name: 'Joao')
       create_list(:subsidiary, 2, name: 'Mateus')
 
-      get '/api/v1/subsidiaries/list'
+      get '/api/v1/subsidiaries'
       
       parsed_body = JSON.parse(response.body)
       
@@ -20,12 +20,3 @@ RSpec.describe 'Subsidiaries API', type: :request do
     end
   end
 end
-
-[
-  {
-
-  },
-  {
-
-  }
-]
