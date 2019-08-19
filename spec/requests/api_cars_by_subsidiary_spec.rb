@@ -13,7 +13,7 @@ RSpec.describe 'Cars API', type: :request do
 
       expect(response.status).to eq 200
       expect(response.body).to include 'EQH-8038'
-      expect(result.lenght).to eq 1
+      expect(result.length).to eq 1
       expect(result.first['license_plate']).to eq 'EQH-8038'
 
     

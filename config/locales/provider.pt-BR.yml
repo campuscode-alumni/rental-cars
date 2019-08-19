@@ -1,0 +1,9 @@
+---
+pt-BR:
+  activerecord:
+    models:
+      provider: 'Fornecedor'
+    attributes:
+      provider:
+        name: 'Nome'
+        cnpj: 'CNPJ'
