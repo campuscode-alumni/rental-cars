@@ -1,5 +1,8 @@
 <% @cars.each do |car|%>
-  <%= link_to "#{car.car_model.name} - #{car.license_plate}", car %>
+  <div id="car-<%= car.id %>">
+    <%= link_to "#{car.car_model.name} - #{car.license_plate}", car %>
+    <%= link_to 'Apagar carro', car, method: :delete, remote: true %>
+  </div>
 <% end %>
 
 

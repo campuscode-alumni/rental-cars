@@ -38,6 +38,8 @@ end
 group :test do
   gem 'capybara'
   gem 'fuubar'
+  gem 'selenium-webdriver'
+  gem 'webdrivers', '~> 4.0'
 end
 
 

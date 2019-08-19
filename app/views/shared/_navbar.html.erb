@@ -31,13 +31,11 @@
           <%= link_to 'Registrar novo cliente', new_customer_path, class: 'nav-link' %>
         </li>
 
-        <li class="nav-item">
-          <%= link_to 'Ver Clientes', customers_path, class: 'nav-link' %>
-        </li>
-
-        <li class="nav-item">
-          <%= link_to 'Carros em Manutenção', maintenances_path, class: 'nav-link' %>
-        </li>
+        <%= form_with url: search_cars_path, method: :get, class: 'form-inline my-w my-lg-0' do |f| %>
+          <%= f.label :q, 'Busca' %>
+          <%= f.text_field :q, class: 'form-control mr-sm-2' %>
+          <%= f.submit 'Search', class: 'btn btn-outline-success my-2 my-sm-0' %>
+        <% end %>
       <% end %>
     </ul>
     <ul class="navbar-nav ml-auto">
