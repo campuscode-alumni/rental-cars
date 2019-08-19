@@ -4,7 +4,9 @@ feature 'successfully' do
   scenario 'user view ten cars in maintenance' do 
 
     user = create(:user)
-    cars = create_list(:car, 11, :on_maintenance)
+    car_model = create(:car_model, name: 'Banana Model')
+    cars = create_list(:car, 10, :on_maintenance)
+    cars << create(:car, :on_maintenance, car_model: car_model)
 
     login_as user
     visit root_path
