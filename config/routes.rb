@@ -11,21 +11,22 @@ Rails.application.routes.draw do
   end
   resources :subsidiary_car_models, only: %i[show new create]
   resources :cars, only: %i[show new create] do
+    resources :fines, only: %i[show new create]
     resources :maintenances, only: %i[show new create edit update]
+    resources :fines, only: %i[show new create]
     resources :inspections, only: %i[ new create]
   end
-  resources :customers, only: %i[show new create]
+ 
   resources :maintenances, only: %i[index] do
     member do
       get 'new_return'
       post 'car_return'
     end
   end
- resources :customers, only: %i[show new create]
-
   namespace :api do
     namespace :v1 do
       resources :subsidiaries, only: %i[index]
     end
   end
+  resources :customers, only: %i[index show new create edit update] 
 end

@@ -17,6 +17,8 @@
   <dd class="col-sm-9"><%= @car.status %></dd>
 </dl>
 
+<%= link_to 'Registrar Multa', new_car_fine_path(@car) %>
+
 <% if @car.on_maintenance? %>
   <dd class="col-sm-9">Status: Em manutenção</dd>
   <%= link_to "Dar baixa em manutenção", new_return_maintenance_path(@car.current_maintenance) %>
@@ -34,3 +36,5 @@
     <%= link_to "Devolução de carro", new_car_return_rental_path(rental) %>
   <% end %>
 <% end %>
+
+
