@@ -23,5 +23,10 @@ Rails.application.routes.draw do
       post 'car_return'
     end
   end
+  namespace :api do
+    namespace :v1 do
+      resources :subsidiaries, only: %i[index]
+    end
+  end
   resources :customers, only: %i[index show new create edit update] 
 end
