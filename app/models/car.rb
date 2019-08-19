@@ -21,6 +21,10 @@ class Car < ApplicationRecord
     maintenances.last if on_maintenance?
   end
 
+  def self.last_available_cars
+    where(status: :available).order(:updated_at).last(10)
+  end
+
   def car_km_can_not_be_less_than_actual
     if car_km < car_km_was
       errors.add(:car_km, 'Quilometragem não pode ser menor que a atual')
