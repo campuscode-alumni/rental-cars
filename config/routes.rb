@@ -29,6 +29,7 @@ Rails.application.routes.draw do
   namespace :v1 do 
     resources :cars, only: %i[show]
     resources :subsidiaries, only: %i[index]
+    resources :customers, only: %i[create]
   end
  end
   resources :customers, only: %i[index show new create edit update] 
