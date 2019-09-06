@@ -1,17 +1,15 @@
 require 'rails_helper'
 
 feature 'User send car to inspection' do
-  scenario 'successfully' do 
-  
-    # dados
+  scenario 'successfully' do
     subsidiary = create(:subsidiary)
     user = create(:user, subsidiary: subsidiary)
-    palio = create(:car_model, name: 'Palio' )
-    car = create(:car, car_model: palio, license_plate: "xlg1234", 
-                       subsidiary: user.subsidiary)
-    customer = create(:customer, cpf: "123456789" )                          
-    # acoes
-    login_as user 
+    palio = create(:car_model, name: 'Palio')
+    create(:car, car_model: palio, license_plate: 'xlg1234',
+                 subsidiary: user.subsidiary)
+    create(:customer, cpf: '123456789')
+
+    login_as user
     visit root_path
     click_on 'Palio - xlg1234'
     click_on 'Enviar para vistoria'
@@ -21,6 +19,6 @@ feature 'User send car to inspection' do
     click_on 'Vistoriado'
 
     expect(page).to have_link('Enviar para vistoria')
-    expect(page).to have_content("Status: Disponível")
+    expect(page).to have_content('Status: Disponível')
   end
-end    
+end

@@ -29,7 +29,7 @@ feature 'Admin register car model' do
   scenario 'and don\'t fill all fields' do
     subsidiary = create(:subsidiary)
     user = create(:user, subsidiary: subsidiary)
-    
+
     login_as user, scope: :user
     visit root_path
     click_on 'Registrar novo modelo'
