@@ -6,7 +6,6 @@ class RentalsController < ApplicationController
   end
 
   def create
-    customer = Customer.find(params[:rental][:customer_id])
     @rental = current_user.rentals.new(rental_params)
     if @rental.save
       RentalMailer.send_rental_receipt(@rental.id).deliver_now
@@ -18,9 +17,7 @@ class RentalsController < ApplicationController
     render :new
   end
 
-  def calcula_quilometragem
-
-  end
+  def calcula_quilometragem; end
 
   def show
     @rental = Rental.find(params[:id])
@@ -34,12 +31,11 @@ class RentalsController < ApplicationController
     @rental = Rental.find(params[:id])
     @car = @rental.car
     if @car.update(car_km: params[:car][:car_km], status: :available)
-      @rental.update(finished_at: Time.now)
+      @rental.update(finished_at: Time.zone.now)
       RentalMailer.send_return_receipt(@rental.id).deliver_now
-      flash[:notice] = 'Carro devolvido com sucesso'
-      redirect_to @car
+      redirect_to @rental.car, notice: 'Carro devolvido com sucesso'
     else
-      flash[:notice] = 'Nao foi possivel salvar'
+      flash.now[:notice] = 'Nao foi possivel salvar'
       render :new_car_return
     end
   end
@@ -47,7 +43,6 @@ class RentalsController < ApplicationController
   private
 
   def rental_params
-    params.require(:rental).permit(:car_id,
-                                  :customer_id)
+    params.require(:rental).permit(:car_id, :customer_id)
   end
 end

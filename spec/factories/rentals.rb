@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :rental do
     car
-    user 
+    user
     customer
   end
 end

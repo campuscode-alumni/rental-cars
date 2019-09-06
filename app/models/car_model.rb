@@ -1,9 +1,6 @@
 class CarModel < ApplicationRecord
   belongs_to :manufacture
-  has_many :subsidiary_car_models
+  has_many :subsidiary_car_models, dependent: :destroy
 
-  validates :name, presence: { message: 'Nome não pode ficar em branco' }
-  validates :year, presence: { message: 'Ano não pode ficar em branco' }
-  validates :car_options, presence: { message: 'Características não pode '\
-                                               'ficar em branco' }
+  validates :name, :year, :car_options, presence: true
 end
