@@ -7,8 +7,11 @@ feature 'Admin sends rental recipt through email' do
     customer = create(:customer, cpf: '123456789')
     sent_mail = class_spy(RentalMailer)
     stub_const('RentalMailer', sent_mail)
-    login_as user
+    mailer = double('RentalMailer')
+    allow(RentalMailer).to receive(:send_rental_receipt).and_return(mailer)
+    allow(mailer).to receive(:deliver_now)
 
+    login_as user
     visit root_path
     click_on 'Registrar Locação'
     select car.car_identification.to_s, from: 'Carro'

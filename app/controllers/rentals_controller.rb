@@ -8,7 +8,7 @@ class RentalsController < ApplicationController
   def create
     @rental = current_user.rentals.new(rental_params)
     if @rental.save
-      RentalMailer.send_rental_receipt(@rental.id)
+      RentalMailer.send_rental_receipt(@rental.id).deliver_now
       flash[:notice] = 'Um email de confirmação foi enviado para o cliente'
       return redirect_to @rental
     end
