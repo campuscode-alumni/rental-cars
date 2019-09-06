@@ -1,28 +1,28 @@
 class CustomersController < ApplicationController
-  before_action :set_params, only: [:show, :edit, :update]
+  before_action :set_params, only: %i[show edit update]
 
   def index
     @customers = Customer.all
-  end 
-    
+  end
+
   def new
     @customer = Customer.new
-  end  
+  end
 
   def create
-    @customer = Customer.new(customer_params)  
+    @customer = Customer.new(customer_params)
     if @customer.save
-      redirect_to @customer 
-      flash[:success] = "Cliente cadastrado com sucesso"
-    else 
-      flash[:error] = "Você deve preencher todos os campos"  
+      redirect_to @customer
+      flash[:success] = 'Cliente cadastrado com sucesso'
+    else
+      flash[:error] = 'Você deve preencher todos os campos'
       render :new
     end
-  end  
+  end
 
-  def show; end  
+  def show; end
 
-  def edit; end  
+  def edit; end
 
   def update
     if @customer.update(customer_params)
@@ -30,17 +30,17 @@ class CustomersController < ApplicationController
       flash[:success] = 'Cliente editado com sucesso'
     else
       flash[:error] = 'Você deve preencher todos os campos'
-      render :edit  
-    end  
-  end  
+      render :edit
+    end
+  end
 
   private
 
   def customer_params
     params.require(:customer).permit(:name, :email, :cpf, :phone)
-  end  
+  end
 
   def set_params
     @customer = Customer.find(params[:id])
-  end  
-end  
+  end
+end

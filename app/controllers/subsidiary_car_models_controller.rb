@@ -24,6 +24,6 @@ class SubsidiaryCarModelsController < ApplicationController
 
   def subsidiary_params
     params.require(:subsidiary_car_model)
-      .permit(%i[price car_model_id])
+          .permit(%i[price car_model_id])
   end
 end
