@@ -3,7 +3,7 @@ FactoryBot.define do
     car_model
     car_km { 200 }
     license_plate { Faker::Vehicle.singapore_license_plate }
-    color { "Azul" }
+    color { 'Azul' }
     subsidiary
 
     trait :on_maintenance do

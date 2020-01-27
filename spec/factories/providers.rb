@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :provider do
-    name { "MyString" }
-    cnpj { "MyString" }
+    name { 'MyString' }
+    cnpj { 'MyString' }
   end
 end

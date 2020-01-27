@@ -7,4 +7,6 @@ pt-BR:
       car_model:
         name: 'Nome'
         year: 'Ano'
-        car_options: 'Opções'
+        car_options: 'Características'
+        manufacture: 'Fabricante'
+        manufacture_id: 'Fabricante'

@@ -6,9 +6,8 @@ class Rental < ApplicationRecord
   validate :customer_cannot_rental_twice
 
   def customer_cannot_rental_twice
-    if customer.rental?
-      errors.add(:customer_id, 'Cliente possui locação em aberto')
-    end
-  end
+    return unless customer.rental?
 
+    errors.add(:customer_id, 'Cliente possui locação em aberto')
+  end
 end

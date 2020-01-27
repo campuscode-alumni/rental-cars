@@ -16,17 +16,20 @@ Rails.application.routes.draw do
     resources :fines, only: %i[show new create]
     resources :inspections, only: %i[ new create]
   end
- 
+
   resources :maintenances, only: %i[index] do
     member do
       get 'new_return'
       post 'car_return'
     end
   end
-  namespace :api do
-    namespace :v1 do
-      resources :subsidiaries, only: %i[index]
+ resources :customers, only: %i[index show new create edit update]
+
+ namespace :api do
+  namespace :v1 do
+    resources :cars, only: %i[show]
+    resources :subsidiaries, only: %i[index]
+      resources :manufactures, only: %i[create]
     end
   end
-  resources :customers, only: %i[index show new create edit update] 
 end

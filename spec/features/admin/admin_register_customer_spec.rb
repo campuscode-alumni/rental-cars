@@ -33,6 +33,5 @@ feature 'Admin register customer' do
     click_on 'Cadastrar cliente'
 
     expect(page).to have_content('Você deve preencher todos os campos')
-
   end
-end      
+end
